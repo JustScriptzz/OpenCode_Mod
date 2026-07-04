@@ -53,6 +53,7 @@ import { DialogConsoleOrg } from "./component/dialog-console-org"
 import { ThemeProvider, useTheme } from "./context/theme"
 import { Home } from "./routes/home"
 import { Session } from "./routes/session"
+import { ChatPanel } from "./component/chat-panel"
 import { PromptHistoryProvider } from "./component/prompt/history"
 import { FrecencyProvider } from "./component/prompt/frecency"
 import { PromptStashProvider } from "./component/prompt/stash"
@@ -61,6 +62,7 @@ import { DialogConfirm } from "./ui/dialog-confirm"
 import { ToastProvider, useToast } from "./ui/toast"
 import { isDefaultTitle } from "./util/session"
 import { KVProvider, useKV } from "./context/kv"
+import { ChatArchiveProvider, useChatArchive } from "./context/chat-archive"
 import * as Model from "./util/model"
 import { ArgsProvider, useArgs, type Args } from "./context/args"
 import open from "open"
@@ -313,14 +315,16 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                                                           <FrecencyProvider>
                                                             <PromptHistoryProvider>
                                                               <PromptRefProvider>
-                                                                <EditorContextProvider>
-                                                                  <LocationProvider>
-                                                                    <App
-                                                                      onSnapshot={input.onSnapshot}
-                                                                      pluginHost={input.pluginHost}
-                                                                    />
-                                                                  </LocationProvider>
-                                                                </EditorContextProvider>
+                                                                <ChatArchiveProvider>
+                                                                  <EditorContextProvider>
+                                                                    <LocationProvider>
+                                                                      <App
+                                                                        onSnapshot={input.onSnapshot}
+                                                                        pluginHost={input.pluginHost}
+                                                                      />
+                                                                    </LocationProvider>
+                                                                  </EditorContextProvider>
+                                                                </ChatArchiveProvider>
                                                               </PromptRefProvider>
                                                             </PromptHistoryProvider>
                                                           </FrecencyProvider>
@@ -1108,6 +1112,9 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         <TimeToFirstDraw />
       </Show>
       <Show when={ready()}>
+        <box flexDirection="row" flexShrink={0} backgroundColor={theme.backgroundPanel}>
+          <ChatPanel />
+        </box>
         <box flexGrow={1} minHeight={0} flexDirection="column">
           <Switch>
             <Match when={route.data.type === "home"}>

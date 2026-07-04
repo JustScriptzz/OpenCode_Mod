@@ -12,16 +12,31 @@ Three additional providers pre-configured in `.opencode/opencode.jsonc` — all 
 | **Gratisfy** | `https://api.gratisfy.xyz/v1` | 20 provider gateways (OpenRouter, Cloudflare, Ollama, Google AI Studio, Mistral, Vercel AI, Cerebras, Cohere, Groq, NVIDIA NIM, Codestral, etc.) |
 | **Pollinations** | `https://gen.pollinations.ai/v1` | 60+ models (GPT-5.5, GPT-5.4, DeepSeek V4, Qwen3, GLM-5, Kimi, Mistral 4, Grok 4.3, Gemini, Claude Opus 4.8, community models, Flux image gen, MidiJourney, etc.) |
 
+## Features
+
+### Chat Archive System
+- **Auto-save**: Every chat is automatically saved whenever a message is sent
+- **Hamburger menu**: Click the ☰ button in the top-left corner to browse saved chats
+- **Keyboard navigation**: Use `j`/`k` to navigate, `Enter` to open, `Esc` to close
+- Chats persist across sessions in `~/.local/share/opencode/chat-archive/`
+
 ## Setup
 
 ```bash
 # Clone
-git clone <your-repo-url>
+git clone https://github.com/JustScriptzz/OpenCode_Mod.git
 cd opencode-mod
 
 # Install deps and build
 bun install
 bun run build
+
+# Run the modded opencode
+bun run dev
+
+# Or install globally
+bun link
+opencode
 
 # Add your API keys as env vars
 # SIXFINGER_API_KEY=...
