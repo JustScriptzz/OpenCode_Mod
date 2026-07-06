@@ -22,8 +22,10 @@ Three additional providers pre-configured in `.opencode/opencode.jsonc` — all 
 
 ## Install
 
+**Requires [Bun](https://bun.sh) >= 1.3**
+
 ```bash
-git clone https://github.com/JustScriptzz/OpenCode_Mod.git && cd opencode-mod && bun install && bun link && opencode
+git clone https://github.com/JustScriptzz/OpenCode_Mod.git && cd opencode-mod && bun install && bun run dev
 ```
 
 After install, add your API keys:
