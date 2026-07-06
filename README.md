@@ -20,28 +20,18 @@ Three additional providers pre-configured in `.opencode/opencode.jsonc` — all 
 - **Keyboard navigation**: Use `j`/`k` to navigate, `Enter` to open, `Esc` to close
 - Chats persist across sessions in `~/.local/share/opencode/chat-archive/`
 
-## Setup
+## Install
 
 ```bash
-# Clone
-git clone https://github.com/JustScriptzz/OpenCode_Mod.git
-cd opencode-mod
+git clone https://github.com/JustScriptzz/OpenCode_Mod.git && cd opencode-mod && bun install && bun link && opencode
+```
 
-# Install deps and build
-bun install
-bun run build
+After install, add your API keys:
 
-# Run the modded opencode
-bun run dev
-
-# Or install globally
-bun link
-opencode
-
-# Add your API keys as env vars
-# SIXFINGER_API_KEY=...
-# GRATISFY_API_KEY=...
-# POLLINATIONS_API_KEY=...
+```bash
+export SIXFINGER_API_KEY=...
+export GRATISFY_API_KEY=...
+export POLLINATIONS_API_KEY=...
 ```
 
 Config lives at `.opencode/opencode.jsonc`. Add the env vars above, and opencode will auto-discover all three providers and their models.
